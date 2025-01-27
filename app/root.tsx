@@ -3,6 +3,7 @@ import {
   Links,
   Meta,
   Outlet,
+  redirect,
   Scripts,
   ScrollRestoration,
   useLoaderData,
@@ -86,10 +87,16 @@ export default function App() {
   //     password:"Ibrahim23"
   //     })
   //   }
+  function signOut(){
+    supabase.auth.signOut(); // Await the sign-out
+
+  }
+
     
 
 
 const revalidator=useRevalidator()
+
     useEffect(()=>{
 const {data:{subscription}}=supabase.auth.onAuthStateChange(()=>{
   revalidator.revalidate()   })
@@ -108,10 +115,11 @@ return()=>{
     Home</Link>
   <Link to="/dashboard" className="border border-white text-white p-2 m-2 rounded-md hover:bg-white hover:text-black">
   Dashboard</Link> */}
-  {/* <button onClick={signUp} className="border border-white text-white p-2 m-2 rounded-md hover:bg-white hover:text-black">Sign Up</button>
-  <button onClick={signIn} className="border border-white text-white p-2 m-2 rounded-md hover:bg-white hover:text-black">Sign In</button> */}
+  {/* {/* {/* <button onClick={signUp} className="border border-white text-white p-2 m-2 rounded-md hover:bg-white hover:text-black">Sign Up</button> */}
+  {/* <button onClick={signIn} className="border border-white text-white p-2 m-2 rounded-md hover:bg-white hover:text-black">Sign In</button> */} 
   
-
+  {/* <button onClick={()=>{signOut()}} className="border border-red-400  text-red-400 p-2 m-2 rounded-md hover:bg-white hover:text-black">Sign Out</button> 
+   */}
  
   <Outlet />
   </>)
